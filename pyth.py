@@ -1,11 +1,15 @@
+File_1 = open("sampleData.txt", "rt")
+
+
 #This function reads the file and takes out the "YES" or "NO" from any line with 'Complete' in it
+
+
 def get_entries( file ):
     ##open the file and read it
-    with open( "sampleData.txt", 'rt') as file:  
-        for line in file:
-            if "Complete" in line:
-                complete, answer = line.split(':')
-                yield answer.strip() 
+    for line in file:
+        if "Complete" in line:
+            complete, answer = line.split(':')
+            yield answer.strip() 
 
 
 
@@ -13,14 +17,12 @@ def get_entries( file ):
 MyList=list(get_entries( file ))
 
 
-
 ##Pull out names from the file...Not pretty, I am new to python
 def get_names( file ):
-    with open("sampleData.txt", "rt") as file:
-        for line in file:
-            if ':' not in line and 'Chapter' not in line and 'UserDone' not in line:
-                name=line
-                yield name.strip()
+    for line in file_2:
+        if ':', 'Chapter','UserDone' not in line:
+            name=line
+            yield name.strip()
 
 #Build a list of Names
 MyList2=list(get_names( file ))
